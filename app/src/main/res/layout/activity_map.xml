@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MapActivity">
+
+<fragment
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_height="400dp"/>
+
+
+    <TextView
+        android:layout_marginTop="12px"
+        android:gravity="center"
+        android:text="Sample Name"
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="12px"
+        android:gravity="center"
+        android:text="test@test.deve"
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+    android:onClick="check_in_btn"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="16dp"
+    android:id="@+id/btn_checkin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp"
+    fancy:fb_borderColor="#FFFFFF"
+    fancy:fb_borderWidth="1dp"
+    fancy:fb_defaultColor="#7ab800"
+    fancy:fb_focusColor="#9bd823"
+    fancy:fb_iconPosition="left"
+    fancy:fb_radius="0dp"
+    fancy:fb_text="Check In"
+    fancy:fb_textColor="#FFFFFF" />
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:visibility="gone"
+        android:onClick="checkout_btn"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/btn_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="1dp"
+        fancy:fb_defaultColor="#673AB7"
+        fancy:fb_focusColor="#4B5795"
+        fancy:fb_iconPosition="left"
+        fancy:fb_radius="0dp"
+        fancy:fb_text="Check Out"
+        fancy:fb_textColor="#FFFFFF" />
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:onClick="attendance_btn"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/btn_attendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        fancy:fb_borderColor="#FFFFFF"
+        fancy:fb_borderWidth="1dp"
+        fancy:fb_defaultColor="#7ab800"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_iconPosition="left"
+        fancy:fb_radius="0dp"
+        fancy:fb_text="My Attendance Details"
+        fancy:fb_textColor="#FFFFFF"
+        tools:ignore="OnClick" />
+
+
+
+
+</LinearLayout>
