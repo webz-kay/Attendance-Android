@@ -279,6 +279,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
     }
+    //comment
     public  void attendance_btn(View v){
         Intent intent=new Intent(MapActivity.this, AttendanceActivity.class);
         startActivity(intent);
