@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">NanoAtt</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">NanoAtt</string>
     <string name="map_key" translatable="false">AIzaSyDs7kRTyU4Wg9bathq89Zny4b_4-wLINyE</string>
     <string name="title_activity_map">NanoAtt</string>
 </resources>

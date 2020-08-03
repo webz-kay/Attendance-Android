@@ -33,6 +33,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -55,6 +56,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        checkLocationPermission();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         checkin_btn = findViewById(R.id.btn_checkin);
@@ -88,9 +90,19 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         gMap.setMyLocationEnabled(true);
         LatLng nairobi = new LatLng(-1.266730, 36.805440);
         gMap.addMarker(new MarkerOptions().position(nairobi).title("Kipro Center"));
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nairobi, 15));
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nairobi, 16));
         // Zoom in, animating the camera.
-        gMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+        gMap.animateCamera(CameraUpdateFactory.newLatLng(nairobi));
+
+        /*//trial
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(nairobi)
+                .zoom(50)
+                .bearing(70)
+                .tilt(25)
+                .build();
+        gMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                cameraPosition));*/
     }
 
     private void requestForGPSUpdates() {
@@ -248,6 +260,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             AndroidNetworking.post(Urls.CHECKOUT_URL)
                     .addBodyParameter("user_id", String.valueOf(user_id))
                     .addBodyParameter("attendance_id", String.valueOf(checkin_id))
+                    .addBodyParameter("lat_out", mLastLocation.getLatitude()+"")
+                    .addBodyParameter("long_out", mLastLocation.getLongitude()+"")
                     .setPriority(Priority.HIGH)
                     .build()
                     .getAsJSONObject(new JSONObjectRequestListener() {
@@ -262,6 +276,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     editor.apply();
                                     Toast.makeText(MapActivity.this, "Checked Out Successfully", Toast.LENGTH_SHORT).show();
                                 } else {
+                                    Log.d(TAG, "onResponse: "+response.toString());
                                     Toast.makeText(MapActivity.this, "Sorry could not checkout. Try Again", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
@@ -271,6 +286,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                         @Override
                         public void onError(ANError anError) {
+                            anError.printStackTrace();
+                            Log.d(TAG, "onError: "+anError.getErrorBody());
+                            Log.d(TAG, "onError: "+anError.getMessage());
+                            Log.d(TAG, "onError: "+anError.getResponse());
                             Toast.makeText(MapActivity.this, "Error. Sorry could not checkout. Try Again. ", Toast.LENGTH_SHORT).show();
 
                         }
